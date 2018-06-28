@@ -1,4 +1,4 @@
-package com.in28minutes.microservices.currencyconversionservice;
+package com.examples.springboot.beans;
 
 import java.math.BigDecimal;
 
