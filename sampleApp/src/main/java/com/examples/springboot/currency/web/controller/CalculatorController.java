@@ -40,4 +40,43 @@ public class CalculatorController {
 		return new ResponseEntity<Integer>(service.add(a, b), HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/calculator/multiply/{a}/{b}", method = {
+			RequestMethod.GET }, produces = "application/hal+json")
+	public ResponseEntity<Integer> multiply(@PathVariable int a, @PathVariable int b, HttpServletRequest request) {
+
+		logger.debug("starts");
+
+		logger.info("Example CalculatorProcessor (/subtract) ->  a :{}, b:{}", a, b);
+
+		logger.debug("ends");
+
+		return new ResponseEntity<Integer>(service.multiply(a, b), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/calculator/subtract/{a}/{b}", method = {
+			RequestMethod.GET }, produces = "application/hal+json")
+	public ResponseEntity<Integer> subtract(@PathVariable int a, @PathVariable int b, HttpServletRequest request) {
+
+		logger.debug("starts");
+
+		logger.info("Example CalculatorProcessor (/subtract) ->  a :{}, b:{}", a, b);
+
+		logger.debug("ends");
+
+		return new ResponseEntity<Integer>(service.subtract(a, b), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/calculator/divide/{a}/{b}", method = {
+			RequestMethod.GET }, produces = "application/hal+json")
+	public ResponseEntity<Integer> divide(@PathVariable int a, @PathVariable int b, HttpServletRequest request) {
+
+		logger.debug("starts");
+
+		logger.info("Example CalculatorProcessor (/divide) ->  a :{}, b:{}", a, b);
+
+		logger.debug("ends");
+
+		return new ResponseEntity<Integer>(service.divide(a, b), HttpStatus.OK);
+	}
+
 }

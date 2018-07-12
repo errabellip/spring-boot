@@ -32,7 +32,7 @@ public class CurrencyConversionController {
 		return new ResponseEntity<BigDecimal>(curencyService.convert(from, to, amount), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/currency/rate/from/{from}/to/{to}/", method = {
+	@RequestMapping(value = "/currency/rate/from/{from}/to/{to}", method = {
 			RequestMethod.GET }, produces = "application/hal+json")
 	public ResponseEntity<BigDecimal> getCurrencyRate(@PathVariable String from, @PathVariable String to,
 			HttpServletRequest request) {

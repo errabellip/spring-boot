@@ -1,7 +1,5 @@
 package com.examples.springboot;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
@@ -10,8 +8,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  *
  */
 
-@SpringBootApplication(scanBasePackages = "com.examples.springboot")
-@EnableAutoConfiguration
+// @SpringBootApplication(scanBasePackages = "com.examples.springboot")
+// @EnableAutoConfiguration
 public class ExampleApplication {
 
 	private static final String ENVIRONMENT_NAME = "DAI_ENV";

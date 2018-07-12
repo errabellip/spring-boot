@@ -2,19 +2,14 @@ package com.examples.springboot.currency.ws.client;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.ws.client.core.WebServiceTemplate;
-import org.springframework.ws.soap.client.SoapFaultClientException;
-import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
 
 import com.examples.springboot.beans.ApiServiceFallBack;
 import com.examples.springboot.beans.SoapServiceGetMessageResponse;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 /**
  * 
@@ -23,7 +18,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
  */
 
 @Component
-public class CalculatorServiceClient extends WebServiceClient {
+public class CalculatorServiceClient {
 
 	private static final Logger logger = LoggerFactory.getLogger(CalculatorServiceClient.class);
 
@@ -32,18 +27,8 @@ public class CalculatorServiceClient extends WebServiceClient {
 	// @Value("${hystrix.command.NotificationServiceGetMessage.execution.isolation.thread.timeoutInMilliseconds}")
 	private int httpConnectionReadTimeout;
 
-	private WebServiceTemplate getMessageWebServiceTemplate;
-
-	private WebServiceTemplate deleteMessageWebServiceTemplate;
-
 	@Autowired
 	public PoolingHttpClientConnectionManager poolingHttpClientConnectionManager;
-
-	@Autowired
-	public RequestConfig defaultRequestConfig;
-
-	@Autowired
-	public SaajSoapMessageFactory saajSoapMessageFactory;
 
 	@PostConstruct
 	public void init() {
@@ -60,7 +45,9 @@ public class CalculatorServiceClient extends WebServiceClient {
 		// httpConnectionReadTimeout);
 	}
 
-	@HystrixCommand(commandKey = "NotificationServiceGetMessage", fallbackMethod = "getNotificationMessagesFallBack", threadPoolKey = "NotificationServiceGetMessagePool")
+	// @HystrixCommand(commandKey = "NotificationServiceGetMessage",
+	// fallbackMethod = "getNotificationMessagesFallBack", threadPoolKey =
+	// "NotificationServiceGetMessagePool")
 	public SoapServiceGetMessageResponse add(int a, int b) {
 
 		return null;
@@ -73,14 +60,15 @@ public class CalculatorServiceClient extends WebServiceClient {
 		}
 
 		ApiServiceFallBack serviceFallBack = null;
-		if (t instanceof SoapFaultClientException) {
-			SoapFaultClientException soapfault = (SoapFaultClientException) t;
-			String faultMsg = soapfault.getFaultCode() + ":" + soapfault.getFaultCode().toString();
-			serviceFallBack = new ApiServiceFallBack(faultMsg);
-		} else {
-			serviceFallBack = new ApiServiceFallBack("Backend api service is either down or under maintanence. ");
+		/*
+		 * if (t instanceof SoapFaultClientException) { SoapFaultClientException
+		 * soapfault = (SoapFaultClientException) t; String faultMsg =
+		 * soapfault.getFaultCode() + ":" + soapfault.getFaultCode().toString();
+		 * serviceFallBack = new ApiServiceFallBack(faultMsg); } else {
+		 */
+		serviceFallBack = new ApiServiceFallBack("Backend api service is either down or under maintanence. ");
 
-		}
+		// }
 		return new SoapServiceGetMessageResponse(-1, serviceFallBack);
 	}
 }
