@@ -29,54 +29,26 @@
 		</layout>
 	</appender>
 	
-	<appender name="HTTP_ROLLER"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${logfolder}/${serviceName}/${serviceName}-http.log</file>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<!-- rollover daily -->
-			<fileNamePattern>${logfolder}/${serviceName}/${serviceName}-http-%d.zip</fileNamePattern>
-			<!-- each file should be at most 4MB, keep 60 days worth of history, but 
-				at most 20GB -->
-			<maxHistory>30</maxHistory>
-			<totalSizeCap>5GB</totalSizeCap>
-		</rollingPolicy>
-		<layout class="ch.qos.logback.classic.PatternLayout">
-			<pattern>%date [%thread] |-%-5level %logger{0}- [%X{correlationid}] - %msg%n</pattern>
-		</layout>
-	</appender>
 	
-	<appender name="PERFORMANCE_ROLLER"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${logfolder}/${serviceName}/${serviceName}-performance.log</file>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<!-- rollover daily -->
-			<fileNamePattern>${logfolder}/${serviceName}/${serviceName}-performance-%d.zip</fileNamePattern>
-			<!-- each file should be at most 4MB, keep 60 days worth of history, but 
-				at most 20GB -->
-			<maxHistory>30</maxHistory>
-			<totalSizeCap>5GB</totalSizeCap>
-		</rollingPolicy>
-		<layout class="ch.qos.logback.classic.PatternLayout">
-			<pattern>%date [%thread] |-%-5level %logger{0}- [%X{correlationid}] - %msg%n</pattern>
-		</layout>
-	</appender>
+	
+	
 	
 	<!-- Application Loggers -->
 	<logger name="com.examples.springboot">
-		<level value="debug" />
+		<level value="trace" />
 	</logger>
 
 	<!-- http request response logging -->
 	<logger name="com.examples.springboot.HttpPayloadLoggerFilter">
-		<level value="debug" />
-		<appender-ref ref="HTTP_ROLLER" />
+		<level value="trace" />
+		
 	</logger>
 
 	
 		
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="info" />
+		<level value="trace" />
 	</logger>
 
 	<!-- For jdbc query debugging -->
@@ -86,19 +58,19 @@
 
 	<!-- For jdbc transaction debugging -->
 	<logger name="org.springframework.transaction">
-		<level value="all" />
+		<level value="trace" />
 	</logger>
 
 	<logger name="org.springframework.beans">
-		<level value="info" />
+		<level value="trace" />
 	</logger>
 
 	<logger name="org.springframework.context">
-		<level value="info" />
+		<level value="trace" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
+		<level value="trace" />
 	</logger>
 
 	<root level="debug">

@@ -1,3 +1,4 @@
+
 server:
   contextPath: /v1
   port: 8062
@@ -22,6 +23,7 @@ spring:
     schema: classpath*:db/${petclinic.database}/schema.sql
     data:  classpath*:db/${petclinic.database}/data.sql
 logging:
+  config: classpath:logback-spring.xml
   level:
     org:
       springframework: INFO

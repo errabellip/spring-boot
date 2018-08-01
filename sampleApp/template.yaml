@@ -18,7 +18,7 @@ Resources:
     DigitalEntitlementRoleAdminFunction:
         Type: AWS::Serverless::Function 
         Properties:
-            CodeUri: .\target\spring-boot-lambda-0.0.1-SNAPSHOT.jar
+            CodeUri: .\target\calculatorRestApp.jar
             Handler: com.examples.springboot.StreamLambdaHandler::handleRequest
             Runtime: java8
             Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
